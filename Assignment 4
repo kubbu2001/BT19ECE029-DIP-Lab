@@ -1,0 +1,38 @@
+from google.colab.patches import cv2_imshow
+  
+import cv2
+import numpy as np
+import math
+
+# ASSIGNMENT 4
+# TANISHK CHANDRASHEKHAR SHEWARE - BT19ECE029
+
+img = cv2.imread("T.jpg")
+
+zero = np.zeros([len(img), len(img[0])])
+
+I_Red = img.copy()
+I_Green = img.copy()
+I_Blue = img.copy()
+
+I_Red[:,:,0] = zero
+I_Red[:,:,1] = zero
+I_Red[:,:,2] = img[:,:,2]
+
+I_Blue[:,:,0] = img[:,:,0]
+I_Blue[:,:,1] = zero
+I_Blue[:,:,2] = zero
+
+I_Green[:,:,0] = zero
+I_Green[:,:,1] = img[:,:,1]
+I_Green[:,:,2] = zero
+
+
+
+print("RED: - ")
+cv2_imshow(I_Red)
+
+print("GREEN: - ")
+cv2_imshow(I_Green)
+print("BLUE: - ")
+cv2_imshow(I_Blue)
