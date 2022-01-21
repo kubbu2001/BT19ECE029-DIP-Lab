@@ -1,0 +1,61 @@
+import cv2
+import numpy as np
+import math
+
+import cv2
+from google.colab.patches import cv2_imshow
+
+# ASSIGNMENT 3
+# TANISHK CHANDRASHEKHAR SHEWARE - BT19ECE029
+
+
+I_Square = cv2.imread('Black Image.png') #Plane Black Image
+I_Circle = cv2.imread("white circle.png") #Image with circle on it
+
+
+#Dimensions of white box
+squareLStart = int(len(I_Square)*0.25)
+squareLStop = int(len(I_Square)*0.75)
+squareWStart = int(len(I_Square[0])*0.25)
+squareWStop = int(len(I_Square[0])*0.75)
+
+# Making a Square Box
+for i in range(squareLStart,squareLStop):
+  for j in range(squareWStart,squareWStop):
+    I_Square[i][j][0] = 255
+    I_Square[i][j][1] = 255
+    I_Square[i][j][2] = 255
+    
+  
+print("White Box Image: - ")
+cv2_imshow(I_Square)
+
+print("White Circle Image: - ")
+cv2_imshow(I_Circle)
+
+I_AND = np.bitwise_and(I_Square,I_Circle)
+I_OR = np.bitwise_or(I_Square,I_Circle)
+I_NAND = np.bitwise_not(np.bitwise_and(I_Square,I_Circle))
+I_NOR = np.bitwise_not(np.bitwise_or(I_Square,I_Circle))
+I_Square_NOT = np.bitwise_not(I_Square )
+I_Circle_NOT = np.bitwise_not(I_Circle)
+I_XOR = np.bitwise_or(np.bitwise_and(I_Square,I_Circle) , np.bitwise_and(np.bitwise_not(I_Square),np.bitwise_not(I_Circle)))
+I_XNOR = np.bitwise_and(np.bitwise_or(I_Square,I_Circle), np.bitwise_or(np.bitwise_not(I_Square),np.bitwise_not(I_Circle)))
+
+
+print("AND: - ")
+cv2_imshow(I_AND)
+print("OR: - ")
+cv2_imshow(I_OR)
+print("NAND: - ")
+cv2_imshow(I_NAND)
+print("NOR: - ")
+cv2_imshow(I_NOR)
+print("SQUARE NOT: - ")
+cv2_imshow(I_Square_NOT)
+print("CIRCLE NOT: - ")
+cv2_imshow(I_Circle_NOT)
+print("XOR: - ")
+cv2_imshow(I_XOR)
+print("XNOR: - ")
+cv2_imshow(I_XNOR)
