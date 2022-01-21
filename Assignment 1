@@ -1,0 +1,59 @@
+
+
+# Assignment 1
+# TANISHK CHANDRASHEKHAR SHEWARE - BT19ECE029
+
+import cv2
+from google.colab.patches import cv2_imshow
+  
+import cv2
+import numpy as np
+import math
+  
+img = cv2.imread('T.jpg')
+
+B, G, R = img[:,:,0], img[:,:,1], img[:,:,2]
+
+#I1 = (G + R + B)/3
+I1 = 0.33*R + 0.59*B + 0.11*G
+
+M = len(I1)
+N = len(I1[0])
+
+I2 = I1.copy()
+
+
+for x in range(M):
+    for y in range(N):
+        intensity = I1[x][y]
+        if intensity>127:
+            I2[x][y] = 255
+        else:
+            I2[x][y] = 0
+
+
+I01 = I1+I2
+I02 = I1 + 20
+
+print("M = ", M," ", "N = ", N)
+
+print("Color Image: - ")
+cv2_imshow(img)
+
+print("Gray Image: - ")
+cv2_imshow(I1)
+
+print("Black and White Image: - ")
+cv2_imshow(I2)
+
+print("Gray Image + Black and White Image: - ")
+cv2_imshow(I01)
+
+print("Gray Image + 20: - ")
+cv2_imshow(I02)
+
+cv2.waitKey(0)        
+
+cv2.destroyAllWindows() 
+
+
